@@ -1,15 +1,5 @@
 import math
 
-
-
-def f1(a):
-    """计算a中元素的积"""
-    sum = 1
-    for i in a:
-        sum *= i
-    return sum
-
-
 def find_prime(num):
     # 假设找6的质数
     res = []
@@ -18,15 +8,15 @@ def find_prime(num):
         if num % i == 0:
             res.append(i)
             flag = True
+            break
 
     if not flag:
-        # 当前num已经是质数
+        # 当前num已经是质数，将自己本身加进去
+        res.append(num)
         return res
 
-    # if f1(res) == num:
-    #     return res
-
-    return res + find_prime(num / res[-1])
+    return res + find_prime(num // res[-1])
 
 n = int(input().strip())
-print(find_prime(n))
+for i in find_prime(n):
+    print(i, end=' ')
